@@ -26,7 +26,7 @@ Rancangan memecahnya menjadi 14 pertanyaan (9 Utama, 4 Pendukung, 1 Tambahan) da
 - Ukuran (perkiraan, **belum diverifikasi**): ±500 post Facebook (2014), ±1.900 video dan ±18 ribu komentar YouTube.
 - Kedua dataset dianalisis terpisah.
 - Rencana tabel: `fb_posts`, `yt_videos`, `yt_comments`, `group_summary`.
-- Lisensi dan sitasi: dicek di halaman sumber sebelum project dipublikasikan.
+- Lisensi: Facebook Metrics CC BY 4.0 (halaman UCI, dicek 28 Oktober 2026); YouTube Statistics CC0: Public Domain (label Kaggle, uploader Advay Patil, dicek 28 Oktober 2026). Sitasi Facebook Metrics: Moro, S., Rita, P., & Vala, B. (2016). Predicting social media performance metrics and evaluation of the impact on brand building: A data mining approach. Journal of Business Research. https://doi.org/10.1016/j.jbusres.2016.02.010
 - Data mentah tidak di-commit ke repository.
 
 ## 3. Analysis
