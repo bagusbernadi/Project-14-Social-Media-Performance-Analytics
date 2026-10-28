@@ -1,0 +1,11 @@
+uji,nilai,ci_low,ci_high,p,n
+top keyword tanpa viral,crypto,,,,1844
+top keyword dengan viral,crypto,,,,1867
+Spearman H4 tanpa viral,0.051765,,,0.026225,1844
+Spearman H4 dengan viral,0.045148,,,0.051121,1867
+Kruskal keyword tanpa viral,657.555573,,,0.0,1844
+H2 jam kerja 08-17: selisih median,0.002698,,,0.098353,232/268
+H2 jam kerja 09-17: selisih median,0.003156,,,0.057696,244/256
+H2 jam kerja 08-18: selisih median,0.002926,,,0.089561,229/271
+Q10 impact pakai ER mean tipe terbaik,331.991106,,,,12
+Q10 impact dengan reach median,28.740502,,,,12

@@ -1,0 +1,5 @@
+zip,berkas,bytes,sha256
+data/raw/facebook+metrics.zip,Facebook_metrics.txt,1613,bd311d4240a39268e197a137f913a58f118c6cc44b3efef977285b4318db46c9
+data/raw/facebook+metrics.zip,dataset_Facebook.csv,37891,666ec82952b7ce90b464f5a87ec4f0fe92d9a63208f2fcb2d0443cb5f31c3f4c
+data/raw/yt_archive.zip,comments.csv,4048999,bc78f5fbddcf57cfcde8609ce35a23658c2eb98fca05d1ffe62fff65a20f651b
+data/raw/yt_archive.zip,videos-stats.csv,227460,09b52f4ac493ffb7a07e64eca489c31afd43cc540398bf626988eaa3cebf930a

@@ -2,7 +2,9 @@
 
 # Project 14: Social Media Performance Analytics
 
-**Status: Design (rancangan).** Halaman rancangan ada di [`index.html`](index.html). Analisis, dashboard, dan angka hasil belum dikerjakan, sehingga bagian Analysis, Recommendation, dan Impact di bawah masih kosong.
+**Status: Analisis selesai, dashboard dan notebook belum (WIP, branch `project-14-build`).**
+
+**Status awal: Design (rancangan).** Halaman rancangan ada di [`index.html`](index.html). Analisis, dashboard, dan angka hasil belum dikerjakan, sehingga bagian Analysis, Recommendation, dan Impact di bawah masih kosong.
 
 **Tujuan:** membangun analisis dan dashboard kinerja media sosial yang menunjukkan jenis konten, hari, dan jam posting dengan engagement rate tertinggi, serta topik dan sentimen komentar yang paling terkait dengan engagement.
 
@@ -31,7 +33,28 @@ Rancangan memecahnya menjadi 14 pertanyaan (9 Utama, 4 Pendukung, 1 Tambahan) da
 
 ## 3. Analysis
 
-Belum dikerjakan. Rencana langkah (12 langkah, tahap A sampai D) ada di bagian 6 halaman rancangan. Semua angka nanti dihitung dari data dengan SQL dan dicek silang.
+Angka dihitung dari `src/03_analysis.py` (pandas) dan dicek silang dengan DuckDB (`src/04_sql_kpi.py`, 45 nilai sama). Ringkasan di `outputs/answers.csv`. Asumsi di `docs/definitions.md`.
+
+**Hasil (Facebook, 500 post, 2014):**
+
+- Q1: median ER Photo 2,45% (CI 2,21–2,65%), Status 1,53%, Link 0,68%, Video 0,55% (n=7, CI lebar).
+- Q2: Kruskal-Wallis p < 0,001. Photo lebih tinggi dari Link dan Status (Holm p < 0,001 dan 0,0002). Photo vs Video p = 0,010 (Holm). Link vs Video tidak berbeda.
+- Hipotesis 1 (Status dan Video lebih tinggi dari Photo dan Link): **tidak didukung**. Status dan Video justru lebih rendah dari Photo.
+- Q3: post berbayar punya reach lebih besar (p < 0,001), tetapi median ER tidak berbeda (p = 0,16). Sesuai hipotesis 3.
+- Q4: Kruskal-Wallis antar kelompok jam p = 0,068 (tidak signifikan). Sel hari × jam dengan n ≥ 5 hanya 9.
+- H2 (di luar jam kerja lebih tinggi): selisih median +0,27 poin, p = 0,098 (satu sisi). Tidak signifikan. Arah sama pada tiga asumsi jam kerja.
+- Q10: estimasi tambahan interaksi hanya sekitar 76 interaksi per bulan (estimated). Selisih ER format terbaik dengan rata-rata sangat kecil (0,04 poin).
+- Q12: 0 post viral. 5 post dengan kolom kosong.
+
+**Hasil (YouTube, 1.867 video, 41 keyword, 18.408 komentar):**
+
+- Q6: median ER tertinggi keyword `crypto` 8,5% (CI 7,8–9,7%). Kruskal-Wallis p < 0,001.
+- Q7 dan Q11: porsi komentar negatif tertinggi di keyword `cnn` (label dataset).
+- Q8 dan H4 (komentar lebih positif, ER lebih tinggi): Spearman ρ = 0,045, p = 0,051 dengan VADER. Label dataset: ρ = -0,007, p = 0,76. **Tidak didukung**.
+- Q9: akurasi VADER terhadap label dataset 71,6% (3 kelas). Label manual 200 komentar belum ada.
+- Q13: keyword teratas tetap `crypto` tanpa 23 video viral. Spearman H4 tanpa viral ρ = 0,052, p = 0,026. Pada pengujian ini sensitif terhadap viral, sehingga kesimpulan H4 belum bisa dipegang.
+
+**Hipotesis 5** (VADER lemah untuk sarkasme dan bahasa campur): belum diuji. Perlu label manual 200 komentar.
 
 Hipotesis yang akan diuji (belum terbukti):
 1. Status dan Video lebih tinggi engagement rate-nya daripada Photo dan Link.
@@ -46,6 +69,8 @@ Belum dikerjakan. Output yang direncanakan: jadwal dan format posting.
 
 ## 5. Impact
 
+Q10 (estimated): ±76 tambahan interaksi per bulan. Asumsi di `docs/definitions.md`.
+
 Belum dikerjakan. Rumus yang akan dipakai (semua hasil diberi label `estimated`):
 
 ```
@@ -57,6 +82,21 @@ Tambahan interaksi = (ER format terbaik − ER rata-rata) × posting per bulan �
 - Korelasi bukan sebab.
 - Data Facebook dari 2014 dan satu brand.
 - Sentimen otomatis tidak sempurna.
+
+## Status pengerjaan (WIP)
+
+| Item | Status |
+|---|---|
+| Ingest dan verifikasi SHA-256 (`src/01_ingest.py`) | selesai |
+| Cleaning dan skor VADER (`src/02_clean.py`) | selesai, log di `outputs/cleaning_log.csv` |
+| Analisis Q1–Q13 (`src/03_analysis.py`) | selesai |
+| Cek silang SQL vs pandas Q14 (`src/04_sql_kpi.py`) | selesai, 45 nilai sama |
+| Label manual 200 komentar (Q9, H5) | belum: butuh label dari Anda |
+| Dashboard Streamlit 4 halaman | belum; belum di-deploy |
+| Notebook analisis, one-sheet | belum |
+| `report_lib.py`, `report.css` dari Project-4 | belum: repo Project-4 belum di-attach |
+| `check_std` | belum dijalankan |
+| Uji dari nol dua kali | belum |
 
 ## Struktur repository
 
