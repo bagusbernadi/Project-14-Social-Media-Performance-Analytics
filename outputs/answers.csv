@@ -16,7 +16,7 @@ Q3,reach berbayar > organik (MWU satu sisi),2229.0,,,7.8e-05,139/360,H3 bagian r
 Q4,median ER tertinggi hari 5.0 jam 11.0,0.041156,,,,8.0,hanya sel n>=5; 41 sel dari 103 sel
 Q4,median ER tertinggi hari 2.0 jam 11.0,0.036002,,,,5.0,hanya sel n>=5; 41 sel dari 103 sel
 Q4,median ER tertinggi hari 7.0 jam 9.0,0.034147,,,,8.0,hanya sel n>=5; 41 sel dari 103 sel
-Q4,Kruskal-Wallis ER antar kelompok jam,8.738333,,,0.067983,500,
+Q4,Kruskal-Wallis ER antar kelompok jam,8.29574,,,0.040279,500,
 Q5,sel tipe x kelompok jam dengan n>=5,9,,,,500,sel kecil; tidak dipakai untuk kesimpulan kuat
 H2,di luar jam kerja > jam kerja (median selisih),0.002698,,,0.098353,232/268,asumsi jam kerja 08-17; lihat sensitivity.csv
 Q6,median ER keyword crypto,0.084747,0.077983,0.096699,,50,3 teratas; ER = (likes+comments)/views

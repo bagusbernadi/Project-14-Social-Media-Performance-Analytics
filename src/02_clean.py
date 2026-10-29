@@ -33,6 +33,16 @@ def viral_flag(er):
     return er > cut, cut
 
 
+def hour_bucket(h):
+    if 5 <= h <= 10:
+        return "Pagi 05-10"
+    if 11 <= h <= 15:
+        return "Siang 11-15"
+    if 16 <= h <= 19:
+        return "Sore 16-19"
+    return "Malam 20-04"
+
+
 def clean_fb():
     d = pd.read_csv(FB_IN, sep=";")
     d.columns = ["page_likes", "type", "category", "month", "weekday", "hour", "paid", "reach",
@@ -49,8 +59,8 @@ def clean_fb():
         sys.exit("reach <= 0 ditemukan; perlu aturan sebelum lanjut")
     d["er"] = d.total / d.reach
     d["viral"], cut_fb = viral_flag(d.er)
-    d["hour_bucket"] = pd.cut(d.hour, bins=[-1, 4, 10, 15, 19, 24],
-                              labels=["Malam 00-04", "Pagi 05-10", "Siang 11-15", "Sore 16-19", "Malam 20-23"]).astype(str)
+    # Kelompok jam sesuai rancangan: Pagi 05-10, Siang 11-15, Sore 16-19, Malam 20-04
+    d["hour_bucket"] = d.hour.map(hour_bucket)
     d["jam_kerja_08_17"] = d.hour.between(8, 17)
     d["paid_label"] = d.paid.map({0.0: "organik", 1.0: "berbayar"}).fillna("tidak diketahui")
     d.to_csv("data/clean/fb_posts.csv", index=False)

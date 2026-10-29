@@ -3,3 +3,4 @@ data/clean/
 *.duckdb
 __pycache__/
 data/sample/
+.pytest_cache/

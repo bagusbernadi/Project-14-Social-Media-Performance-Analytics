@@ -1,0 +1,36 @@
+pertanyaan,metrik,nilai,ci_low,ci_high,p,n,catatan
+Q1,median ER Photo,0.024524,0.022063,0.026532,,426,"bootstrap percentile 95%, 5000 resample"
+Q1,median ER Status,0.015305,0.011589,0.017762,,45,"bootstrap percentile 95%, 5000 resample"
+Q1,median ER Link,0.00681,0.002928,0.009679,,22,"bootstrap percentile 95%, 5000 resample"
+Q1,median ER Video,0.005458,0.004806,0.015413,,7,"bootstrap percentile 95%, 5000 resample"
+Q2,Kruskal-Wallis ER antar tipe,53.126542,,,0.0,500,
+Q2,MWU Link vs Photo,,,,0.0,22/426,p disesuaikan Holm (6 pasang)
+Q2,MWU Link vs Status,,,,0.000119,22/45,p disesuaikan Holm (6 pasang)
+Q2,MWU Link vs Video,,,,0.784157,22/7,p disesuaikan Holm (6 pasang)
+Q2,MWU Photo vs Status,,,,0.000235,426/45,p disesuaikan Holm (6 pasang)
+Q2,MWU Photo vs Video,,,,0.010342,426/7,p disesuaikan Holm (6 pasang)
+Q2,MWU Status vs Video,,,,0.05116,45/7,p disesuaikan Holm (6 pasang)
+H1,Status+Video > Photo+Link (one-sided MWU),-0.008664,,,0.999986,52/448,selisih median ER (Status+Video) - (Photo+Link); arah hipotesis diuji
+Q3,median ER berbayar - organik,-0.001888,,,0.157616,139/360,MWU dua sisi; missing paid dikeluarkan
+Q3,reach berbayar > organik (MWU satu sisi),2229.0,,,7.8e-05,139/360,H3 bagian reach
+Q4,median ER tertinggi hari 5.0 jam 11.0,0.041156,,,,8.0,hanya sel n>=5; 41 sel dari 103 sel
+Q4,median ER tertinggi hari 2.0 jam 11.0,0.036002,,,,5.0,hanya sel n>=5; 41 sel dari 103 sel
+Q4,median ER tertinggi hari 7.0 jam 9.0,0.034147,,,,8.0,hanya sel n>=5; 41 sel dari 103 sel
+Q4,Kruskal-Wallis ER antar kelompok jam,8.29574,,,0.040279,500,
+Q5,sel tipe x kelompok jam dengan n>=5,9,,,,500,sel kecil; tidak dipakai untuk kesimpulan kuat
+H2,di luar jam kerja > jam kerja (median selisih),0.002698,,,0.098353,232/268,asumsi jam kerja 08-17; lihat sensitivity.csv
+Q6,median ER keyword crypto,0.084747,0.077983,0.096699,,50,3 teratas; ER = (likes+comments)/views
+Q6,median ER keyword reaction,0.064895,0.059745,0.076069,,49,3 teratas; ER = (likes+comments)/views
+Q6,median ER keyword asmr,0.050838,0.04105,0.055986,,49,3 teratas; ER = (likes+comments)/views
+Q6,Kruskal-Wallis ER antar keyword,673.002878,,,0.0,1867,
+Q7,keyword dengan porsi negatif tertinggi (label dataset),cnn,,,,497,porsi negatif 0.553; kode 0 diasumsikan negative
+Q11,peringkat negatif tertinggi (sama dengan Q7),cnn,,,,497,Tambahan; lihat yt_keyword_sent.csv
+Q8,Spearman VADER mean x ER video,0.045148,,,0.051121,1867,H4; video dengan komentar
+Q8,Spearman label dataset mean x ER video,-0.007212,,,0.755487,1867,pembanding; kode label diasumsikan
+Q9,akurasi VADER vs label dataset (3 kelas),0.716373,0.709854,0.722838,,18408,label dataset dianggap referensi; belum ada label manual 200 komentar
+Q10,estimasi tambahan interaksi per bulan (estimated),75.665509,,,,12,(ER Photo median - ER rata-rata post) x 12 x reach rata-rata 13903; label estimated
+Q12,post FB dengan kolom kosong,5,,,,500,dipertahankan; lihat cleaning_log.csv
+Q12,video YT viral (> Q3+3IQR),23,,,,1867,ditinjau terpisah (Q13)
+Q12,post FB viral,0,,,,500,
+Q13,top keyword sama tanpa viral,True,,,,1844,tanpa viral: crypto; dengan viral: crypto
+Q13,Spearman H4 tanpa viral,0.051765,,,0.026225,1844,

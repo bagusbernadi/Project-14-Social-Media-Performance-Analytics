@@ -2,7 +2,7 @@
 
 # Project 14: Social Media Performance Analytics
 
-**Status: Analisis selesai, dashboard dan notebook belum (WIP, branch `project-14-build`).**
+**Status: Analisis dan dashboard selesai (WIP, branch `project-14-build`). Belum di-deploy. Notebook dan label manual belum.**
 
 **Status awal: Design (rancangan).** Halaman rancangan ada di [`index.html`](index.html). Analisis, dashboard, dan angka hasil belum dikerjakan, sehingga bagian Analysis, Recommendation, dan Impact di bawah masih kosong.
 
@@ -41,7 +41,7 @@ Angka dihitung dari `src/03_analysis.py` (pandas) dan dicek silang dengan DuckDB
 - Q2: Kruskal-Wallis p < 0,001. Photo lebih tinggi dari Link dan Status (Holm p < 0,001 dan 0,0002). Photo vs Video p = 0,010 (Holm). Link vs Video tidak berbeda.
 - Hipotesis 1 (Status dan Video lebih tinggi dari Photo dan Link): **tidak didukung**. Status dan Video justru lebih rendah dari Photo.
 - Q3: post berbayar punya reach lebih besar (p < 0,001), tetapi median ER tidak berbeda (p = 0,16). Sesuai hipotesis 3.
-- Q4: Kruskal-Wallis antar kelompok jam p = 0,068 (tidak signifikan). Sel hari × jam dengan n ≥ 5 hanya 9.
+- Q4: Kruskal-Wallis antar kelompok jam p = 0,040 (kelompok jam sesuai rancangan: Pagi, Siang, Sore, Malam 20–04). Hasilnya marginal dan tidak seimbang: Sore 16–19 hanya 8 post. Malam 20–04 punya median tertinggi (2,46%). Sel hari × jam dengan n ≥ 5 hanya 9.
 - H2 (di luar jam kerja lebih tinggi): selisih median +0,27 poin, p = 0,098 (satu sisi). Tidak signifikan. Arah sama pada tiga asumsi jam kerja.
 - Q10: estimasi tambahan interaksi hanya sekitar 76 interaksi per bulan (estimated). Selisih ER format terbaik dengan rata-rata sangat kecil (0,04 poin).
 - Q12: 0 post viral. 5 post dengan kolom kosong.
@@ -51,7 +51,7 @@ Angka dihitung dari `src/03_analysis.py` (pandas) dan dicek silang dengan DuckDB
 - Q6: median ER tertinggi keyword `crypto` 8,5% (CI 7,8–9,7%). Kruskal-Wallis p < 0,001.
 - Q7 dan Q11: porsi komentar negatif tertinggi di keyword `cnn` (label dataset).
 - Q8 dan H4 (komentar lebih positif, ER lebih tinggi): Spearman ρ = 0,045, p = 0,051 dengan VADER. Label dataset: ρ = -0,007, p = 0,76. **Tidak didukung**.
-- Q9: akurasi VADER terhadap label dataset 71,6% (3 kelas). Label manual 200 komentar belum ada.
+- Q9: akurasi VADER terhadap label dataset 71,6% (3 kelas, 18.408 komentar). Pembanding berbasis LLM pada 200 sampel: label dataset 74,5%, VADER 56,5%. Label LLM dibuat asisten AI dan belum diverifikasi manusia. Label manual belum ada.
 - Q13: keyword teratas tetap `crypto` tanpa 23 video viral. Spearman H4 tanpa viral ρ = 0,052, p = 0,026. Pada pengujian ini sensitif terhadap viral, sehingga kesimpulan H4 belum bisa dipegang.
 
 **Hipotesis 5** (VADER lemah untuk sarkasme dan bahasa campur): belum diuji. Perlu label manual 200 komentar.
@@ -90,13 +90,14 @@ Tambahan interaksi = (ER format terbaik − ER rata-rata) × posting per bulan �
 | Ingest dan verifikasi SHA-256 (`src/01_ingest.py`) | selesai |
 | Cleaning dan skor VADER (`src/02_clean.py`) | selesai, log di `outputs/cleaning_log.csv` |
 | Analisis Q1–Q13 (`src/03_analysis.py`) | selesai |
+| Dashboard export (`src/08_dashboard_export.py`) | selesai |
+| Uji dari nol dua kali (`run_all.sh`) | selesai, checksum identik |
 | Cek silang SQL vs pandas Q14 (`src/04_sql_kpi.py`) | selesai, 45 nilai sama |
-| Label manual 200 komentar (Q9, H5) | belum: butuh label dari Anda |
-| Dashboard Streamlit 4 halaman | belum; belum di-deploy |
+| Label manual 200 komentar (Q9, H5) | belum: sampel sudah dikirim; pembanding LLM ada di `labels/llm_label_200.csv` |
+| Dashboard Streamlit 4 halaman (`dashboard/app.py`) + AppTest (`tests/test_dashboard.py`, 3 lulus) | selesai; belum di-deploy |
 | Notebook analisis, one-sheet | belum |
 | `report_lib.py`, `report.css` dari Project-4 | belum: repo Project-4 belum di-attach |
 | `check_std` | belum dijalankan |
-| Uji dari nol dua kali | belum |
 
 ## Struktur repository
 
