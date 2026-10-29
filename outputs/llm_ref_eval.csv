@@ -1,0 +1,3 @@
+pembanding,n,akurasi_vs_llm_ref
+vader,200,0.565
+dataset,200,0.745
