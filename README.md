@@ -4,7 +4,7 @@
 
 **Halaman web:** https://bagusbernadi.github.io/Project-14-Social-Media-Performance-Analytics/
 
-**Status: Analisis dan dashboard selesai (WIP, branch `project-14-build`). Belum di-deploy. Notebook dan label manual belum.**
+**Status: Analisis dan dashboard selesai (WIP, di `main`). Belum di-deploy. Notebook dan label manual belum.**
 
 **Status awal: Design (rancangan).** Halaman rancangan ada di [`index.html`](index.html). Analisis, dashboard, dan angka hasil belum dikerjakan, sehingga bagian Analysis, Recommendation, dan Impact di bawah masih kosong.
 
